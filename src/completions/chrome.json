@@ -1,0 +1,64 @@
+{
+    "chrome": [
+        {
+            "name": "action",
+            "kind":  "Class"
+        },
+        {
+            "name": "alarms",
+            "kind":  "Class"
+        },
+        {
+            "name": "commands",
+            "kind":  "Class"
+        },
+        {
+            "name": "declerativeNetRequest",
+            "kind":  "Class"
+        },
+        {
+            "name": "offscreen",
+            "kind":  "Class"
+        },
+        {
+            "name": "runtime",
+            "kind":  "Class"
+        },
+                {
+            "name": "scripting",
+            "kind":  "Class"
+        },
+        {
+            "name": "sidePanel",
+            "kind":  "Class"
+        },
+        {
+            "name": "storage",
+            "kind":  "Class"
+        },
+                {
+            "name": "tabs",
+            "kind":  "Class"
+        },
+        {
+            "name": "userScripts",
+            "kind":  "Class"
+        },
+        {
+            "name": "webNavigation",
+            "kind":  "Class"
+        },
+        {
+            "name": "webRequest",
+            "kind":  "Class"
+        },
+        {
+            "name": "windows",
+            "kind":  "Class"
+        },
+        {
+            "name": "permissions",
+            "kind":  "Class"
+        }
+    ]
+}
