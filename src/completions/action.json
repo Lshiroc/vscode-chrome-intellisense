@@ -1,0 +1,10 @@
+{
+    "action": [
+        {
+            "name": "setIcon",
+            "kind": "Method",
+            "parameters": "options: Object, callback?: function",
+            "documentation": "Sets an icon for extension on toolbar\n\n*@params* `options` - Settings for icon\n\n*@params* `callback` - Callback function\n\n*@returns* - Promise\n\nSee: [chrome.action.setIcon()](https://developer.chrome.com/docs/extensions/reference/api/action#method-setIcon)"
+        }
+    ]
+}

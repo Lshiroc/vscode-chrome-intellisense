@@ -2,63 +2,63 @@
     "chrome": [
         {
             "name": "action",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "alarms",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "commands",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "declerativeNetRequest",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "offscreen",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "runtime",
-            "kind":  "Class"
+            "kind":  "Module"
         },
                 {
             "name": "scripting",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "sidePanel",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "storage",
-            "kind":  "Class"
+            "kind":  "Module"
         },
                 {
             "name": "tabs",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "userScripts",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "webNavigation",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "webRequest",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "windows",
-            "kind":  "Class"
+            "kind":  "Module"
         },
         {
             "name": "permissions",
-            "kind":  "Class"
+            "kind":  "Module"
         }
     ]
 }

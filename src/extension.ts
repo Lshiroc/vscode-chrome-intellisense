@@ -7,13 +7,21 @@ interface ChromeEl {
 	kind: string
 }
 
+interface ActionEl {
+	name: string,
+	kind: string,
+	parameters: string,
+	documentation: string
+}
+
 enum Kind {
 	Class,
 	Method
 }
 
 import * as vscode from 'vscode';
-const chromeJSON = require("./completions/chrome.json")
+const chromeJSON = require("./completions/chrome.json");
+const actionJSON = require('./completions/action.json');
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log("extension is working..")
@@ -48,17 +56,17 @@ export function activate(context: vscode.ExtensionContext) {
 			// the `command`-property is set which the editor will execute after 
 			// completion has been inserted. Also, the `insertText` is set so that 
 			// a space is inserted after `new`
-			// const commandCompletion = new vscode.CompletionItem('action');
-			// commandCompletion.kind = vscode.CompletionItemKind.Method;
-			// commandCompletion.insertText = 'action';
-			// commandCompletion.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions...' };
+			const commandCompletion = new vscode.CompletionItem('action');
+			commandCompletion.kind = vscode.CompletionItemKind.Method;
+			commandCompletion.insertText = 'chrome.action';
+			commandCompletion.command = { command: 'editor.action.triggerSuggest', title: 'Re-trigger completions...' };
 
 			// return all completion items as array
 			return [
 				// simpleCompletion,
 				// cc1,
 				// commitCharacterCompletion,
-				// commandComplet	ion
+				// commandCompletion
 			];
 		}
 	});
@@ -77,7 +85,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 
 				return [
-					new vscode.CompletionItem('action', vscode.CompletionItemKind.Method),
+					new vscode.CompletionItem('myFunc', vscode.CompletionItemKind.Module),
 				];
 			}
 		},
@@ -93,11 +101,47 @@ export function activate(context: vscode.ExtensionContext) {
 					return undefined;
 				}
 				
-				return chromeJSON.chrome.map((el: ChromeEl) => new vscode.CompletionItem(el.name, vscode.CompletionItemKind[el.kind as keyof typeof vscode.CompletionItemKind]));
+				return chromeJSON.chrome.map((el: ChromeEl) => {
+					let completionItem = new vscode.CompletionItem(el.name, vscode.CompletionItemKind[el.kind as keyof typeof vscode.CompletionItemKind])
+					completionItem.detail = `${el.kind.toLowerCase()} ${el.name}`;
+					return completionItem;
+				});
 			},
 		},
 		'.'
 	);
+
+		const actionProvider = vscode.languages.registerCompletionItemProvider(
+		'javascript',
+		{
+			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+				const linePrefix = document.lineAt(position).text.slice(0, position.character);
+				if (!linePrefix.endsWith('chrome.action.')) {
+					return undefined;
+				}
+				
+				return actionJSON.action.map((el: ActionEl) => {
+					let completionItem = new vscode.CompletionItem(el.name, vscode.CompletionItemKind[el.kind as keyof typeof vscode.CompletionItemKind])
+					completionItem.detail = `(${el.kind.toLowerCase()}) action.${el.name}(${el.parameters})`;
+					completionItem.documentation = el.documentation;
+					let markdown = new vscode.MarkdownString();
+					markdown.appendMarkdown(el.documentation);
+					markdown.baseUri = vscode.Uri.parse("https://developer.chrome.com/docs/extensions/reference/api/action#method-setIcon");
+					completionItem.documentation = markdown;
+					completionItem.command = {command: "editor.action.showHover", "title": "lolllll"}
+					// completionItem.
+					// completionItem.
+					return completionItem;
+				});
+			},
+		},
+		'.'
+	);
+
+	// vscode.languages.createLanguageStatusItem("saas", "sasa")
+
+	// vscode.languages.createLanguageStatusItem
+	
 		
-	context.subscriptions.push(chromeProvider);
+	context.subscriptions.push(actionProvider, chromeProvider);
 }
